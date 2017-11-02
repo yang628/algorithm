@@ -108,6 +108,26 @@ public class SortAll {
      */
 
     /**
+     * 归并排序
+     *
+     * 给定一个指定索引范围的数组，进行排序（自顶而上）
+     *
+     * @param arr
+     * @param lo
+     * @param hi
+     */
+    public static void mergeSort(int[] arr, int lo, int hi){
+        //排除错误的数组，和 递归的出口
+        if(lo >= hi){
+            return;
+        }
+        int mid =lo + (hi-lo)/2;
+        mergeSort(arr,lo,mid);
+        mergeSort(arr,mid+1,hi);
+        merge(arr,lo,mid,hi);
+    }
+
+    /**
      * 归并 arr数组中索引为lo-hi之间的位置。
      * @param arr
      * @param lo
@@ -149,11 +169,13 @@ public class SortAll {
         // BubbleSort(arr);
         // InsertSort(arr);
         //shellSort(arr);
-
+       //mergeSort(arr,0, arr.length-1);
+        System.out.println("排序之前");
         for (int i : arr) {
             System.out.print(i + "  ");
         }
-        merge(arr,4, 7, 11 );
+
+        System.out.println("排序之后");
         System.out.println();
         for (int i : arr) {
             System.out.print(i + "  ");
