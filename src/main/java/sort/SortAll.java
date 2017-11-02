@@ -91,11 +91,70 @@ public class SortAll {
     }
 
 
+    /**
+     * 归并排序：是采用分治法
+     * 它的主要思想就是把两个数组（各个数组一定要有序），归并到一个数组中。
+     *
+     * 主要思考：
+     * 1.分解
+     *      如何将一个大的数组逐步分成多个小的有序数组。
+     * 2.合并
+     *       如何将两个有序列表并成一个适当的数组。
+     * 两种方式：
+     * 1.自顶而下的归并排序
+     * 2.自底而上的归并排序
+     *
+     * @param
+     */
+
+    /**
+     * 归并 arr数组中索引为lo-hi之间的位置。
+     * @param arr
+     * @param lo
+     * @param mid
+     * @param hi
+     */
+    public static void merge(int[] arr, int lo, int mid, int hi ){
+        int length = arr.length;
+        int[] arrCopy = new int[length];
+        //把数组复制一份到arrCopy
+        for (int i =lo ; i<=hi; i++){
+            arrCopy[i] = arr[i];
+        }
+
+        //在辅助数组aa中分  左  中   右引索。比较arrCopy中的需要归并的元素，比较后放入arr数组中相应位置中
+        int i = lo;
+        int j = mid+1;
+        //for循环是控制复制的元素。即包括：lo--hi 包括自己
+        for (int k = lo; k<=hi; k++){
+            if (i>mid){//左半边已经复制结束
+                arr[k]=arrCopy[j++];
+            }else if(j>hi){
+                arr[k] = arrCopy[i++];
+            }else if(arrCopy[i]>arrCopy[j]){
+                arr[k] = arrCopy[j++];
+            }else{
+                arr[k] = arrCopy[i++];
+            }
+
+        }
+
+    }
+
+
+
     public static void main(String[] args) {
-        int[] arr = {12, 1, 5, 26, 23, 25, 26, 58, 98, 57, 47, 44, 1, 23, 6};
+        int[] arr = {12, 1, 5, 26, 23, 25, 26, 58, 11, 22, 33, 44, 55, 66, 6,4,54,33};
+
         // BubbleSort(arr);
         // InsertSort(arr);
-        shellSort(arr);
+        //shellSort(arr);
+
+        for (int i : arr) {
+            System.out.print(i + "  ");
+        }
+        merge(arr,4, 7, 11 );
+        System.out.println();
         for (int i : arr) {
             System.out.print(i + "  ");
         }
