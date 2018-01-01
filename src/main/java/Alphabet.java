@@ -115,6 +115,7 @@ public class Alphabet {
 
     }
 
+
     /**
      * Initializes a new alphabet using characters 0 through R-1.
      *
